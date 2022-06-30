@@ -1,36 +1,41 @@
-# This is a basic workflow to help you get started with Actions
+name: Create a sample provenance
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    name: Build artifact
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      # traditionally you would build your code here and generate an artifact
+      - name: Create artifact
+        run:  echo "onion, tomato, jalapeno, cilantro, lime, salt" > salsa.txt
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          path: salsa.txt
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+  generate-provenance:
+    needs: build
+    name: Generate build provenance
+    runs-on: ubuntu-latest
+    steps:
+      # checkout only required to run local action (defined in this repo)
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v2
+
+      - name: Generate provenance
+        # use action in the root directory
+        uses: ./
+        with:
+          artifact_path: artifact/
+
+      - name: Upload provenance
+        uses: actions/upload-artifact@v2
+        with:
+          path: build.provenance
