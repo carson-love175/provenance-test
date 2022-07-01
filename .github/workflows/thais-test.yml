@@ -56,7 +56,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Verify Provenance
     steps:
-    - run: ls -l
     - run: git clone git@github.com:slsa-framework/slsa-verifier.git
     - run: cd slsa-verifier && git checkout v1.1.1
     - run: go run . -artifact-path ~/Downloads/slsa-verifier-linux-amd64 -provenance ~/Downloads/slsa-verifier-linux-amd64.intoto.jsonl -source github.com/carson-love175/provenance-test
