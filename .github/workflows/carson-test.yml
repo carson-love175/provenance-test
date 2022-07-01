@@ -59,4 +59,5 @@ jobs:
       - name: Upload provenance
         uses: actions/upload-artifact@v2
         with:
+          name: provenance
           path: build.provenance
