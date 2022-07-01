@@ -1,4 +1,4 @@
-name: Create simple provenance-test
+name: Create simple provenance-test Thais
 
 on:
   workflow_dispatch:
