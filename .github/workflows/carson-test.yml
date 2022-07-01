@@ -61,3 +61,13 @@ jobs:
         with:
           name: provenance
           path: build.provenance
+    
+  verify-provenance:
+    needs: generate-provenance
+    name: Verifies provenance
+    runs-on: ubuntu-latest
+    steps:
+      - name: install verifier
+        run: |
+          go install github.com/slsa-framework/slsa-verifier@v1.1.1
+          
