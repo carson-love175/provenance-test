@@ -68,13 +68,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
   
-      - name: downlaod provenance and artifact 
+      - name: download provenance and artifact 
         uses: actions/download-artifact@v2
             
       
       - name: verify artifact 
         run: |
-          git clone git@github.com:slsa-framework/slsa-verifier.git
+          git clone https://github.com/slsa-framework/slsa-verifier.git
           cd slsa-verifier
           git checkout v1.1.1
           go run . -artifact-path veracode-scan-target -provenance provenance 
