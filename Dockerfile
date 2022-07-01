@@ -9,6 +9,6 @@ WORKDIR /usr/src/app
 RUN npm init -y
 RUN npm install npm@6
 copy . .
-LABEL repository-name="DEV-JavaScriptTestApp"
-LABEL owner="Mora-Matthew_mclm"
+LABEL repository-name="carson-love175/provenance-test"
+LABEL owner="First Last"
 CMD [ "node", "server.js" ]
