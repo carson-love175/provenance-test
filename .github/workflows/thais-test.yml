@@ -34,7 +34,7 @@ jobs:
         # use action in the root directory
         uses: ./
         with:
-          artifact_path: artifact/
+          artifact_path: artifact/thais-test
 
       - name: Upload provenance
         uses: actions/upload-artifact@v2
