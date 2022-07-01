@@ -32,7 +32,7 @@ jobs:
 
       - name: Generate provenance
         # use action in the root directory
-        uses: ./
+        uses: slsa-framework/github-actions-demo@v0.1
         with:
           artifact_path: artifact/thais-test
 
