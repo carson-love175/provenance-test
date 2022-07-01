@@ -74,5 +74,7 @@ jobs:
       
       - name: verify artifact 
         run: |
-          go install github.com/slsa-framework/slsa-verifier@v1.1.1
-          slsa-verifier -artifact-path veracode-scan-target -provenance provenance 
+          git clone git@github.com:slsa-framework/slsa-verifier.git
+          cd slsa-verifier
+          git checkout v1.1.1
+          go run . -artifact-path veracode-scan-target -provenance provenance 
