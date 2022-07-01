@@ -48,8 +48,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/download-artifact@v2
-      with:
-         name: artifact
     - run: git clone https://github.com/slsa-framework/slsa-verifier.git
     - run: cd slsa-verifier && git checkout v1.1.1
     - run: go run . -artifact-path ~/home/runner/work/provenance-test/provenance-test/artifact/artifact.zip -provenance ~/home/runner/work/provenance-test/provenance-test/build.provenance -source github.com/carson-love175/provenance-test
