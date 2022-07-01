@@ -50,5 +50,11 @@ jobs:
     - uses: actions/download-artifact@v2
       with:
         name: artifact
-    - name: Display structure of downloaded files
-      run: ls -R
+
+  verify-provenance:
+    needs: download-artifact
+    runs-on: ubuntu-latest
+    name: Verify Provenance
+    steps:
+    - run: go install github.com/slsa-framework/slsa-verifier@v1.1.1
+  
