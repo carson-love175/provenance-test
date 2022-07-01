@@ -79,4 +79,4 @@ jobs:
           git checkout v1.1.1
           ls /home/runner/work/provenance-test/provenance-test
           ls /home/runner/work/provenance-test/provenance-test/veracode-scan-target
-          go run . -artifact-path /home/runner/work/provenance-test/provenance-test/veracode-scan-target -provenance /home/runner/work/provenance-test/provenance-test/provenance -source https://github.com/carson-love175/provenance-test
+          go run . -artifact-path /home/runner/work/provenance-test/provenance-test/veracode-scan-target/veracode-scan-target.zip -provenance /home/runner/work/provenance-test/provenance-test/provenance/build.provenance -source https://github.com/carson-love175/provenance-test
