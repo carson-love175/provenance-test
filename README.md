@@ -74,5 +74,6 @@ This repo is meant to be used for testing a Veracode pipeline scan.
       - name: Upload provenance
         uses: actions/upload-artifact@v2
         with:
+          name: provenance
           path: build.provenance
  ```
