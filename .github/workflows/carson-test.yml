@@ -61,7 +61,7 @@ jobs:
         with:
           name: provenance
           path: build.provenance
-    
+   
   verify-provenance:
     needs: generate-provenance
     name: Verifies provenance
@@ -71,3 +71,9 @@ jobs:
         run: |
           go install github.com/slsa-framework/slsa-verifier@v1.1.1
           
+      - name: downlaod provenance and artifact 
+        uses: actions/download-artifact@v2
+        
+      - name: verify artifact 
+        run: |
+          slsa-verifier -artifact-path veracode-scan-target -provenance provenance 
