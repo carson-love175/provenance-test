@@ -77,4 +77,4 @@ jobs:
           git clone https://github.com/slsa-framework/slsa-verifier.git
           cd slsa-verifier
           git checkout v1.1.1
-          go run . -artifact-path veracode-scan-target -provenance provenance 
+          go run . -artifact-path veracode-scan-target -provenance provenance -source https://github.com/carson-love175/provenance-test
