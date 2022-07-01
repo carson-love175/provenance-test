@@ -40,3 +40,15 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           path: build.provenance
+          
+  download-artifact:
+    needs: generate-provenance
+    runs-on: ubuntu-latest
+    name: Download Artifact
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/download-artifact@v3
+      with:
+        name: artifact
+    - name: Display structure of downloaded files
+      run: ls -R
