@@ -58,5 +58,5 @@ jobs:
     steps:
     - run: git clone https://github.com/slsa-framework/slsa-verifier.git
     - run: cd slsa-verifier && git checkout v1.1.1
-    - run: go run . -artifact-path ~/Downloads/slsa-verifier-linux-amd64 -provenance ~/Downloads/slsa-verifier-linux-amd64.intoto.jsonl -source github.com/carson-love175/provenance-test
+    - run: go run . -artifact-path ~/home/runner/work/provenance-test/provenance-test -provenance ~/home/runner/work/provenance-test/provenance-test/build.provenance -source github.com/carson-love175/provenance-test
   
