@@ -23,3 +23,7 @@ This repo is meant to be used for testing a Veracode pipeline scan.
           name: provenance
           path: build.provenance
  ```
+
+### Issues
+The Rekor issue.
+Pull Request on the SLSA: https://github.com/slsa-framework/slsa-verifier/pull/98
