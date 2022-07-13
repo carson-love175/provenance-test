@@ -50,11 +50,15 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v2
 
-      - name: Generate provenance
+#      - name: Generate provenance
         # use action in the root directory
-        uses: slsa-framework/github-actions-demo@v0.1
+#        uses: slsa-framework/github-actions-demo@v0.1
+#        with:
+#          artifact_path: veracode-scan-target
+      - name: Generate provenance
+        uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@main
         with:
-          artifact_path: veracode-scan-target
+          base64-subjects: "veracode-scan-target"
 
       - name: Upload provenance
         uses: actions/upload-artifact@v2
