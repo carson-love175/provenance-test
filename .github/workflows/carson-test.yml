@@ -41,7 +41,7 @@ jobs:
   generate-provenance:
     needs: build
     name: Generate build provenance
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@main
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.1.1
     with:
       base64-subjects: "veracode-scan-target"
 #    runs-on: ubuntu-latest
