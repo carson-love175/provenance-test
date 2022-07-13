@@ -37,13 +37,21 @@ jobs:
       with:
          name: veracode-scan-target
          path: veracode-scan-target.zip
-
+    - name: generate base64
+      run: | 
+        base64 veracode-scan-target.zip > veracode.subject
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.0.0
+      with:
+         name: veracode-scan-target-b64
+         path: veracode.subject
+         
   generate-provenance:
     needs: build
     name: Generate build provenance
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.1.1
     with:
-      base64-subjects: "veracode-scan-target"
+      base64-subjects: "veracode-scan-target-b64"
 #    runs-on: ubuntu-latest
 #    steps:
       # checkout only required to run local action (defined in this repo)
