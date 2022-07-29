@@ -14,10 +14,7 @@ jobs:
     steps:
       - name: Collect test.js file
         run: |
-              mkdir artifact
-              cp package-lock.js ./artifact
-              cp package.js ./artifact
-              zip artifact.zip ./artifact
+              ls
       - name: Upload Artifact to Github
         uses: actions/upload-artifact@v2
         with:
