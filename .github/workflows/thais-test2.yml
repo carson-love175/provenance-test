@@ -8,6 +8,8 @@ jobs:
     name: Collect Artifacts
     runs-on: ubuntu-latest
     steps:
+      - name: install packages
+        run: npm install
       - name: Collect test.js file
         run: |
               mkdir artifact
