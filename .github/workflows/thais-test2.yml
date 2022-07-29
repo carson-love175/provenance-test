@@ -20,7 +20,7 @@ jobs:
           echo "::set-output name=hashes::$(sha256 artifact1 | base64 -w0)"
           
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8
         with:
           name: artifact1
           path: artifact1
