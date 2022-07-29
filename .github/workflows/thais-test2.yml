@@ -10,9 +10,7 @@ jobs:
     steps:
       - name: Collect test.js file
         run: |
-              tree -a ./tests
               mkdir artifact
-              cp tests/test.js ./artifact
               cp package-lock.js ./artifact
               cp package.js ./artifact
               zip artifact.zip ./artifact
