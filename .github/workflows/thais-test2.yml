@@ -1,40 +1,38 @@
-name: Create Artifact and Provence from files
+name: Create simple provenance-test Thais
 
 on:
   workflow_dispatch:
-  
-defaults:
-  run:
-    working-directory: provenance-test
-  
+
+
 jobs:
   build:
-    name: Collect Artifacts
+    outputs:
+      hashes: ${{ steps.hash.outputs.hashes }}
     runs-on: ubuntu-latest
     steps:
-      - name: Collect test.js file
+      - name: Build artifact
+        run:  echo "onion, tomato, jalapeno, cilantro, lime, salt" > artifact1
+
+      - name: Generate hashes
+        shell: bash
+        id: hash
         run: |
-              ls
-      - name: Upload Artifact to Github
+          echo "::set-output name=hashes::$(sha256 artifact1 | base64 -w0)"
+          
+      - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-            path: artifact.zip
-            
+          name: artifact1
+          path: artifact1
+
   generate-provenance:
     needs: build
-    name: Generate build provenance
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download build artifact
-        uses: actions/download-artifact@v2
-
-      - name: Generate provenance
-        uses: slsa-framework/github-actions-demo@v0.1
-        with:
-          artifact_path: artifact/
-
-      - name: Upload provenance
-        uses: actions/upload-artifact@v2
-        with:
-          name: provenance
-          path: build.provenance
+    permissions:
+      actions: read
+      id-token: write
+      contents: read
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.2.0
+    with: 
+      base64-subjects: "${{ needs.build.outputs.hashes }}"
+      attestation-name: "artifact.intoto.jsonl"
+      upload-assets: true
