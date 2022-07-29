@@ -25,8 +25,8 @@ jobs:
           name: artifact1
           path: artifact1
 
-  generate-provenance:
-    needs: build
+  provenance:
+    needs: [build]
     permissions:
       actions: read
       id-token: write
