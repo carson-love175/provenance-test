@@ -1,4 +1,4 @@
-name: Create simple provenance-test Thais
+name: Test SLSA Level 1 Provenance Generation
 
 on:
   workflow_dispatch:
