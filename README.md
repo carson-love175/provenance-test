@@ -2,7 +2,7 @@
 This repo is meant to be used for testing a Veracode pipeline scan.
 
 
-### To call the provence workflow, add the following job to your workflow:
+### To call the provenance workflow for SLSA Level 1, add the following job to your workflow:
 ```
   generate-provenance:
     needs: build
@@ -24,6 +24,12 @@ This repo is meant to be used for testing a Veracode pipeline scan.
           path: build.provenance
  ```
 
-### Issues
-The Rekor issue.
-Pull Request on the SLSA: https://github.com/slsa-framework/slsa-verifier/pull/98
+### To call the provenance workflow for SLSA Level 3, add the following jobs to your workflow:
+
+Within the artifact creation portion of your workflow add the following lines
+
+Add the following jobs
+
+For verification of the provenance add the following lines within the workflow
+
+To find any files execute the following command within the job
