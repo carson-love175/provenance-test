@@ -80,4 +80,4 @@ jobs:
         cd slsa-verifier && git checkout v1.2.0
         ls /home/runner/work/provenance-test/provenance-test/artifact1
         go run . -artifact-path /home/runner/work/provenance-test/provenance-test/artifact1/artifact1 -provenance /home/runner/work/provenance-test/provenance-test/attestation.intoto.jsonl/attestation.intoto.jsonl -source github.com/carson-love175/provenance-test -print-provenance
-        cat attestation.intoto.jsonl | jq -r '.payload' | base64 -d | jq
+        cat /home/runner/work/provenance-test/provenance-test/attestation.intoto.jsonl/attestation.intoto.jsonl | jq -r '.payload' | base64 -d | jq
