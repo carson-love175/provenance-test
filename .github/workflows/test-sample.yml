@@ -1,4 +1,4 @@
-name: Testing Sample Code
+name: Testing Level 3 SLSA
 
 on:
   workflow_dispatch:
@@ -62,3 +62,20 @@ jobs:
         with:
           files: |
             artifact1
+            
+  verify-provenance:
+    needs: release
+    runs-on: ubuntu-latest
+    name: Verify Provenance
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Go environment
+      uses: actions/setup-go@v3.2.1
+      with:
+        go-version: 1.18
+    - uses: actions/download-artifact@v2
+    - run: |
+        git clone https://github.com/slsa-framework/slsa-verifier.git
+        cd slsa-verifier && git checkout v1.2.0
+        ls /home/runner/work/provenance-test/provenance-test/artifact1
+        go run . -artifact-path /home/runner/work/provenance-test/provenance-test/artifact/artifact1 -provenance /home/runner/work/provenance-test/provenance-test/artifact/build.provenance -source github.com/carson-love175/provenance-test
