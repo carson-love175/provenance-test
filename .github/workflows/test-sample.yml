@@ -80,9 +80,4 @@ jobs:
         cd slsa-verifier && git checkout v1.2.0
         ls /home/runner/work/provenance-test/provenance-test/artifact1
         go run . -artifact-path /home/runner/work/provenance-test/provenance-test/artifact1/artifact1 -provenance /home/runner/work/provenance-test/provenance-test/attestation.intoto.jsonl/attestation.intoto.jsonl -source github.com/carson-love175/provenance-test -print-provenance
-   # - name: Upload Provenance Artifact
-    #  uses: actions/upload-artifact@3cea5372237819ed00197afe530f5a7ea3e805c8 # tag=v3.1.0
-     # with:
-      #    name: build.provenance
-       #   path: provenance
-        #  if-no-files-found: error
+        cat attestation.intoto.jsonl | jq -r '.payload' | base64 -d | jq
